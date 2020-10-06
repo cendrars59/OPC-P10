@@ -30,10 +30,10 @@ if os.environ.get('ENV', 'development') == 'PRODUCTION':
 else:
     DEBUG = True
 
-DEBUG = True
 
 ALLOWED_HOSTS = [
-    'localhost',
+'207.154.248.15',    
+'localhost',
     '127.0.0.1'
 ]
 
