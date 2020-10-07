@@ -25,16 +25,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY', 'Elv!sizNotDe@d')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.environ.get('ENV', 'development') == 'PRODUCTION':
-    DEBUG = False
-else:
-    DEBUG = True
+
+DEBUG = True
 
 
 ALLOWED_HOSTS = [
 '207.154.248.15',    
 'localhost',
-    '127.0.0.1'
+'127.0.0.1'
 ]
 
 
@@ -141,12 +139,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-if os.environ.get('ENV', 'development') == 'PRODUCTION':
-    STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-    MEDIA_URL = '/media/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 INTERNAL_IPS = ['127.0.0.1']
 

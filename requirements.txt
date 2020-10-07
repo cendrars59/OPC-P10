@@ -28,7 +28,6 @@ py==1.8.1
 pycodestyle==2.6.0
 pycparser==2.20
 pyflakes==2.2.0
-PyMySQL==0.9.3
 pyparsing==2.4.7
 pytz==2020.1
 regex==2020.6.8
