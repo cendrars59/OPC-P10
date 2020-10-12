@@ -5,8 +5,8 @@ DATABASES = {
         # Using postgresql connector
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'pure',  # Database name
-        'USER': 'dick',  # Database user name
-        'PASSWORD': 'rivers',
+        'USER': 'postgres',  # Database user name
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432',
 
