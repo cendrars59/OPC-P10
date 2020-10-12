@@ -9,6 +9,6 @@ DATABASES = {
         'PASSWORD': 'rivers',
         'HOST': 'localhost',
         'PORT': '5432',
-        'TEST': {'NAME': 'jojo', },
+
     },
 }
