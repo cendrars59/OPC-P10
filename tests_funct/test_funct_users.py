@@ -3,7 +3,7 @@ import time
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.urls import reverse
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+
 
 chrome_options = Options()
 chrome_options.add_argument('--headless')
@@ -12,13 +12,17 @@ chrome_options.add_argument('--disable-dev-shm-usage')
 
 
 class TestRegisterPage(StaticLiveServerTestCase):
-    def setUp(self):
-        self.browser = webdriver.Chrome(
-            executable_path='/mnt/c/webdrivers/chromedriver.exe'
-        )
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.driver = webdriver.Chrome(chrome_options=chrome_options)
+        cls.driver.implicitly_wait(30)
+        cls.driver.maximize_window()
 
-    def tearDown(self):
-        self.browser.close()
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
+        cls.driver.quit()
 
     def test_valid_registration(self):
         self.browser.get(self.live_server_url + reverse("register") )
@@ -78,13 +82,17 @@ class TestRegisterPage(StaticLiveServerTestCase):
 
 
 class TestLoginPage(StaticLiveServerTestCase):
-    def setUp(self):
-        self.browser = webdriver.Chrome(
-            executable_path='/mnt/c/webdrivers/chromedriver.exe'
-        )
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.driver = webdriver.Chrome(chrome_options=chrome_options)
+        cls.driver.implicitly_wait(30)
+        cls.driver.maximize_window()
 
-    def tearDown(self):
-        self.browser.close()
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
+        cls.driver.quit()
 
     def test_valid_login(self):
         self.browser.get(self.live_server_url + reverse("register") )
@@ -109,13 +117,17 @@ class TestLoginPage(StaticLiveServerTestCase):
         self.assertEquals(self.browser.current_url, self.live_server_url + '/')
 
 class TestUserInformationPage(StaticLiveServerTestCase):
-    def setUp(self):
-        self.browser = webdriver.Chrome(
-            executable_path='/mnt/c/webdrivers/chromedriver.exe'
-        )
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.driver = webdriver.Chrome(chrome_options=chrome_options)
+        cls.driver.implicitly_wait(30)
+        cls.driver.maximize_window()
 
-    def tearDown(self):
-        self.browser.close()
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
+        cls.driver.quit()
 
     def test_valid_profile(self):
         self.browser.get(self.live_server_url + reverse("register") )

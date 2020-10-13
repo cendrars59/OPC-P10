@@ -27,34 +27,34 @@ class TestHomePage(StaticLiveServerTestCase):
 
 
     def test_verify_elements_in_home(self):
-        self.browser.get(self.live_server_url)
+        self.driver.get(self.live_server_url)
         time.sleep(5)
         # user opens the page and sees header section
-        logo = self.browser.find_element_by_id("logo")
+        logo = self.driver.find_element_by_id("logo")
         source = logo.get_attribute("src")
         self.assertEquals(
             source,
             self.live_server_url
             + '/static/dist/assets/img/logo/logo_pur_beurre.png',
         )
-        title = self.browser.find_element_by_id("brand").text
+        title = self.driver.find_element_by_id("brand").text
         self.assertEquals(title, 'Pur beurre')
-        title = self.browser.find_element_by_id("main-title").text
+        title = self.driver.find_element_by_id("main-title").text
         self.assertEquals(title, 'DU GRAS, OUI, MAIS DE QUALITÉ!')
 
     def test_redirection_to_login(self):
         mentions_url = self.live_server_url + reverse("login")
-        self.browser.get(self.live_server_url)
+        self.driver.get(self.live_server_url)
         time.sleep(5)
-        self.browser.find_element_by_id("selections-login").click()
-        self.assertEquals(self.browser.current_url, mentions_url)
+        self.driver.find_element_by_id("selections-login").click()
+        self.assertEquals(self.driver.current_url, mentions_url)
         time.sleep(5)
 
     def test_redirection_to_mentions(self):
         mentions_url = self.live_server_url + reverse("pages-mentions")
-        self.browser.get(self.live_server_url)
+        self.driver.get(self.live_server_url)
         time.sleep(5)
-        self.browser.find_element_by_id("legal-link").click()
-        self.assertEquals(self.browser.current_url, mentions_url)
+        self.driver.find_element_by_id("legal-link").click()
+        self.assertEquals(self.driver.current_url, mentions_url)
         time.sleep(5)
 
