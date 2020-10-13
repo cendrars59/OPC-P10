@@ -18,7 +18,4 @@ class TestUrls(SimpleTestCase):
         url = reverse('catlog:search')
         self.assertEquals(resolve(url).func, search)
 
-    # Checking URL search is resolved
-    def test_detail_url_is_resolved(self):
-        url = reverse('catlog:detail')
-        self.assertEquals(resolve(url).func, detail)
+    

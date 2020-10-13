@@ -1,0 +1,34 @@
+language: python
+python:
+  - "3.8"
+
+addons:
+  # use chrome for Selenium 
+  chrome: stable
+
+
+branches:
+  only:
+      - staging
+
+# stuff to do before executing the script
+install:
+    # command to install dependencies
+  - pip install -r requirements.txt
+  - pip install tchappui-webdrivers
+
+before_script:
+  - install-webdrivers
+  - psql -c 'create database pure;' -U postgres
+
+
+services:
+    - postgresql
+
+
+env: DJANGO_SETTINGS_MODULE="config.settings.travis"
+
+
+# command to run tests
+script:
+  - pytest # or py.test for Python versions 3.5 and below
