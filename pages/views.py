@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 
 def home(request):
+    (1/0)
     return render(request, 'pages/home.html')
 
 

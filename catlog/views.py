@@ -122,3 +122,4 @@ def search(request):
                 user=user, mainProduct=product, subProduct=subproduct
             )
         return redirect(request.POST.get('next'))
+
