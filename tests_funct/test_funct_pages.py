@@ -3,22 +3,28 @@ import time
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.urls import reverse
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+#from selenium.webdriver.chrome.options import Options
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless')
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--disable-gpu')
-chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('window-size=1920x1080')
+
 
 
 class TestHomePage(StaticLiveServerTestCase):
     
-    def setUp(self):
-        self.browser = webdriver.Chrome()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.driver = webdriver.Chrome(chrome_options=chrome_options)
+        cls.driver.implicitly_wait(30)
+        cls.driver.maximize_window()
 
-    def tearDown(self):
-        self.browser.close()
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
+        cls.driver.quit()
+
 
     def test_verify_elements_in_home(self):
         self.browser.get(self.live_server_url)
