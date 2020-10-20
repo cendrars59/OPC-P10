@@ -15,3 +15,6 @@ class Command(BaseCommand):
         connection = connect()
         feed_application(connection)
         print('database creation & feed done')
+
+
+
