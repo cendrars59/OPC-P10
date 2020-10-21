@@ -3,7 +3,7 @@ python:
   - "3.8"
 
 addons:
-  # use chrome for Selenium 
+  ## use chrome for Selenium 
   chrome: stable
 
 
