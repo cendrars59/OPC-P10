@@ -12,11 +12,13 @@ def connect():
     """Connect to Postgresql database."""
     conn = None
     try:
-        conn = psycopg2.connect(user= "dick",
-                                password = "rivers",
-                                host = "localhost",
-                                database = "pure",
-                                port= "5432")
+        conn = psycopg2.connect(
+            user="dick",
+            password="rivers",
+            host="localhost",
+            database="pure",
+            port="5432",
+        )
 
         return conn
 

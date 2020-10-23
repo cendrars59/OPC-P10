@@ -36,3 +36,10 @@ class TestViewsLogOut(TestCase):
         client = Client()
         response = client.get(reverse('logout'))
         self.assertTemplateUsed(response, 'users/logout.html')
+
+
+class TestViewsProfile(TestCase):
+    def test_profile_status(self):
+        client = Client()
+        response = client.get(reverse('profile'))
+        self.assertEquals(response.status_code, 302)

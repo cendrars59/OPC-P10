@@ -18,8 +18,7 @@ import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-
-## Quick-start development settings - unsuitable for production
+# Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -30,9 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'Elv!sizNotDe@d')
 DEBUG = True
 
 
-ALLOWED_HOSTS = [
-'127.0.0.1'
-]
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -49,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
-
 ]
 
 MIDDLEWARE = [
@@ -153,9 +149,3 @@ FILTERS_DISABLE_HELP_TEXT = True
 LOGIN_REDIRECT_URL = 'pages-home'
 
 LOGIN_URL = 'login'
-
-
-
-
-
-

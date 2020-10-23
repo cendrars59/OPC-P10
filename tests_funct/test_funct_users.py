@@ -8,13 +8,14 @@ from selenium import webdriver
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--headless')
 chrome_options.add_argument('window-size=1920x1080')
+chrome_options.add_argument('--disable-dev-shm-usage')
 
 
 class TestRegisterPage(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.driver = webdriver.Chrome(chrome_options=chrome_options)
+        cls.driver = webdriver.Chrome(options=chrome_options)
         cls.driver.implicitly_wait(30)
         cls.driver.maximize_window()
 
@@ -24,11 +25,13 @@ class TestRegisterPage(StaticLiveServerTestCase):
         cls.driver.quit()
 
     def test_valid_registration(self):
-        self.driver.get(self.live_server_url + reverse("register") )
+        self.driver.get(self.live_server_url + reverse("register"))
         time.sleep(1)
         self.driver.find_element_by_name("username").send_keys("elvis")
         time.sleep(1)
-        self.driver.find_element_by_name("email").send_keys("elvis@isnotdead.com")
+        self.driver.find_element_by_name("email").send_keys(
+            "elvis@isnotdead.com"
+        )
         time.sleep(1)
         self.driver.find_element_by_name("password1").send_keys("Dickrivers76")
         time.sleep(1)
@@ -37,12 +40,14 @@ class TestRegisterPage(StaticLiveServerTestCase):
         self.driver.find_element_by_id("btn-register").click()
         time.sleep(5)
         redirection_url = self.live_server_url + reverse("login")
-        self.assertEquals(self.driver.current_url, redirection_url)
+        self.assertEqual(self.driver.current_url, redirection_url)
 
     def test_invalid_registration_missing_login(self):
         self.driver.get(self.live_server_url + reverse("register"))
         time.sleep(1)
-        self.driver.find_element_by_name("email").send_keys("jojo@labuvette.com")
+        self.driver.find_element_by_name("email").send_keys(
+            "jojo@labuvette.com"
+        )
         time.sleep(1)
         self.driver.find_element_by_name("password1").send_keys("Dickrivers76")
         time.sleep(1)
@@ -50,7 +55,9 @@ class TestRegisterPage(StaticLiveServerTestCase):
         time.sleep(1)
         self.driver.find_element_by_id("btn-register").click()
         time.sleep(5)
-        self.assertEquals(self.driver.current_url, self.live_server_url + reverse("register"))
+        self.assertEqual(
+            self.driver.current_url, self.live_server_url + reverse("register")
+        )
 
     def test_invalid_registration_missing_email(self):
         self.driver.get(self.live_server_url + reverse("register"))
@@ -63,28 +70,33 @@ class TestRegisterPage(StaticLiveServerTestCase):
         time.sleep(1)
         self.driver.find_element_by_id("btn-register").click()
         time.sleep(5)
-        self.assertEquals(self.driver.current_url, self.live_server_url + reverse("register"))
+        self.assertEqual(
+            self.driver.current_url, self.live_server_url + reverse("register")
+        )
 
     def test_invalid_registration_missing_pwd1(self):
         self.driver.get(self.live_server_url + reverse("register"))
         time.sleep(1)
         self.driver.find_element_by_name("username").send_keys("jojo")
         time.sleep(1)
-        self.driver.find_element_by_name("email").send_keys("jojo@labuvette.com")
+        self.driver.find_element_by_name("email").send_keys(
+            "jojo@labuvette.com"
+        )
         time.sleep(1)
         self.driver.find_element_by_name("password2").send_keys("Dickrivers76")
         time.sleep(1)
         self.driver.find_element_by_id("btn-register").click()
         time.sleep(5)
-        self.assertEquals(self.driver.current_url, self.live_server_url + reverse("register"))
-
+        self.assertEqual(
+            self.driver.current_url, self.live_server_url + reverse("register")
+        )
 
 
 class TestLoginPage(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.driver = webdriver.Chrome(chrome_options=chrome_options)
+        cls.driver = webdriver.Chrome(options=chrome_options)
         cls.driver.implicitly_wait(30)
         cls.driver.maximize_window()
 
@@ -94,11 +106,13 @@ class TestLoginPage(StaticLiveServerTestCase):
         cls.driver.quit()
 
     def test_valid_login(self):
-        self.driver.get(self.live_server_url + reverse("register") )
+        self.driver.get(self.live_server_url + reverse("register"))
         time.sleep(1)
         self.driver.find_element_by_name("username").send_keys("bobby")
         time.sleep(1)
-        self.driver.find_element_by_name("email").send_keys("bobby@isnotdead.com")
+        self.driver.find_element_by_name("email").send_keys(
+            "bobby@isnotdead.com"
+        )
         time.sleep(1)
         self.driver.find_element_by_name("password1").send_keys("Dickrivers76")
         time.sleep(1)
@@ -115,11 +129,12 @@ class TestLoginPage(StaticLiveServerTestCase):
         time.sleep(5)
         self.assertEquals(self.driver.current_url, self.live_server_url + '/')
 
+
 class TestUserInformationPage(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.driver = webdriver.Chrome(chrome_options=chrome_options)
+        cls.driver = webdriver.Chrome(options=chrome_options)
         cls.driver.implicitly_wait(30)
         cls.driver.maximize_window()
 
@@ -129,11 +144,13 @@ class TestUserInformationPage(StaticLiveServerTestCase):
         cls.driver.quit()
 
     def test_valid_profile(self):
-        self.driver.get(self.live_server_url + reverse("register") )
+        self.driver.get(self.live_server_url + reverse("register"))
         time.sleep(1)
         self.driver.find_element_by_name("username").send_keys("robert")
         time.sleep(1)
-        self.driver.find_element_by_name("email").send_keys("robert@isnotdead.com")
+        self.driver.find_element_by_name("email").send_keys(
+            "robert@isnotdead.com"
+        )
         time.sleep(1)
         self.driver.find_element_by_name("password1").send_keys("Dickrivers76")
         time.sleep(1)
@@ -153,15 +170,16 @@ class TestUserInformationPage(StaticLiveServerTestCase):
         redirection_url = self.live_server_url + reverse("profile")
         self.assertEquals(self.driver.current_url, redirection_url)
         email = self.driver.find_element_by_id("p-email").text
-        self.assertEquals(email, "robert@isnotdead.com" )
+        self.assertEquals(email, "robert@isnotdead.com")
         login = self.driver.find_element_by_id("profile-un").text
-        self.assertEquals(login, "robert" )
+        self.assertEquals(login, "robert")
+
 
 class TestUserInformationPage(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.driver = webdriver.Chrome(chrome_options=chrome_options)
+        cls.driver = webdriver.Chrome(options=chrome_options)
         cls.driver.implicitly_wait(30)
         cls.driver.maximize_window()
 
@@ -170,13 +188,14 @@ class TestUserInformationPage(StaticLiveServerTestCase):
         super().tearDownClass()
         cls.driver.quit()
 
-
     def test_valid_user_products(self):
-        self.driver.get(self.live_server_url + reverse("register") )
+        self.driver.get(self.live_server_url + reverse("register"))
         time.sleep(1)
         self.driver.find_element_by_name("username").send_keys("brenda")
         time.sleep(1)
-        self.driver.find_element_by_name("email").send_keys("brendat@isnotdead.com")
+        self.driver.find_element_by_name("email").send_keys(
+            "brendat@isnotdead.com"
+        )
         time.sleep(1)
         self.driver.find_element_by_name("password1").send_keys("Dickrivers76")
         time.sleep(1)
@@ -195,4 +214,3 @@ class TestUserInformationPage(StaticLiveServerTestCase):
         time.sleep(5)
         redirection_url = self.live_server_url + reverse("user_search")
         self.assertEquals(self.driver.current_url, redirection_url)
-        

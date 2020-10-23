@@ -5,7 +5,6 @@ from catlog.views import search, detail
 
 
 class TestUrls(SimpleTestCase):
-
     def test_search_url_is_resolved(self):
         # Issue a GET request.
         response = self.client.get('/catalogue/search/')
@@ -17,5 +16,3 @@ class TestUrls(SimpleTestCase):
     def test_search_url_is_resolved(self):
         url = reverse('catlog:search')
         self.assertEquals(resolve(url).func, search)
-
-    
