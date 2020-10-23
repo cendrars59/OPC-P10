@@ -42,4 +42,4 @@ class TestViewsProfile(TestCase):
     def test_profile_status(self):
         client = Client()
         response = client.get(reverse('profile'))
-        self.assertEquals(response.status_code, 302)
+        self.assertEqual(response.status_code, 302)
