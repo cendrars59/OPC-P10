@@ -168,11 +168,11 @@ class TestUserInformationPage(StaticLiveServerTestCase):
         self.driver.find_element_by_id("profile-link").click()
         time.sleep(5)
         redirection_url = self.live_server_url + reverse("profile")
-        self.assertEquals(self.driver.current_url, redirection_url)
+        self.assertEqual(self.driver.current_url, redirection_url)
         email = self.driver.find_element_by_id("p-email").text
-        self.assertEquals(email, "robert@isnotdead.com")
+        self.assertEqual(email, "robert@isnotdead.com")
         login = self.driver.find_element_by_id("profile-un").text
-        self.assertEquals(login, "robert")
+        self.assertEqual(login, "robert")
 
 
 class TestUserInformationPage(StaticLiveServerTestCase):
@@ -204,7 +204,7 @@ class TestUserInformationPage(StaticLiveServerTestCase):
         self.driver.find_element_by_id("btn-register").click()
         time.sleep(5)
         redirection_url = self.live_server_url + reverse("login")
-        self.assertEquals(self.driver.current_url, redirection_url)
+        self.assertEqual(self.driver.current_url, redirection_url)
         self.driver.find_element_by_name("username").send_keys("brenda")
         time.sleep(1)
         self.driver.find_element_by_name("password").send_keys("Dickrivers76")
@@ -213,4 +213,4 @@ class TestUserInformationPage(StaticLiveServerTestCase):
         self.driver.find_element_by_id("selections-link").click()
         time.sleep(5)
         redirection_url = self.live_server_url + reverse("user_search")
-        self.assertEquals(self.driver.current_url, redirection_url)
+        self.assertEqual(self.driver.current_url, redirection_url)

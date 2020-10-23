@@ -6,7 +6,7 @@ class TestViews(TestCase):
     def test_homepage_status(self):
         client = Client()
         response = client.get(reverse('pages-home'))
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_homepage_template(self):
         client = Client()
@@ -16,7 +16,7 @@ class TestViews(TestCase):
     def test_mentions_status(self):
         client = Client()
         response = client.get(reverse('pages-mentions'))
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
     def test_mentions_template(self):
         client = Client()
