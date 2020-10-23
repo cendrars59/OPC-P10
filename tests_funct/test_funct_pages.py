@@ -17,7 +17,8 @@ class TestHomePage(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver', options=chrome_options)
+        cls.driver = webdriver.Chrome(
+            executable_path='/usr/local/bin/chromedriver', options=chrome_options)
         cls.driver.implicitly_wait(30)
         cls.driver.maximize_window()
 

@@ -3,8 +3,6 @@
 # - the connection to the database
 # - the creation of the database and the associated schema
 
-import os
-
 import psycopg2
 
 

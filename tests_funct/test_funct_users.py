@@ -175,7 +175,7 @@ class TestUserInformationPage(StaticLiveServerTestCase):
         self.assertEqual(login, "robert")
 
 
-class TestUserInformationPage(StaticLiveServerTestCase):
+class TestUserInformationUpdatePage(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

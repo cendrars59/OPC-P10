@@ -1,5 +1,4 @@
 # -*- coding: Utf-8 -*
-import datetime
 
 import requests
 
@@ -91,8 +90,6 @@ def feed_products(conn):
 
     product_category = set()
 
-    NUMBER_OF_CATEGORIES = 6
-
     # Removing the non french categories
     query = "DELETE FROM catlog_category WHERE code NOT LIKE 'fr:%' "
     cursor = conn.cursor()
@@ -117,7 +114,7 @@ def feed_products(conn):
         )
     )
     print(
-        "products loading is starting. It could take a while...Have a break :-) "
+        "products loading is starting. It takes a while...Have a break :-)"
     )
     for category in categories:
         print('loading products for the category : {}'.format(category[2]))
@@ -141,7 +138,8 @@ def feed_products(conn):
         # for each active category, gathering from Open food facts products
         for product in products['products']:
 
-            # verify if the product already exists into the database the search is by open fact food id <-> code into db
+            # verify if the product already exists into the database the
+            #  search is by open fact food id <-> code into db
             if 'id' in product:
                 query_for_check = "SELECT COUNT(*) FROM catlog_product WHERE catlog_product.code = '{0}'".format(
                     product['id']
@@ -150,8 +148,10 @@ def feed_products(conn):
                 cursor_ck.execute(query_for_check)
                 ckresult = cursor_ck.fetchall()
                 cursor_ck.close()
-                # Filtering products having only a valid structure and where the label and id are not empty and
-                # the product doesn't exist into the database and the grade level is not empty.
+                # Filtering products having only a valid structure and where
+                #  the label and id are not empty and
+                # the product doesn't exist into the database and the grade
+                #  level is not empty.
                 if (
                     'brands' in product
                     and 'stores' in product
@@ -166,9 +166,9 @@ def feed_products(conn):
                     and product['nutrition_grade_fr'] != ''
                     and 'ingredients_text_with_allergens_fr' in product
                     and ckresult[0][0] == 0
-                    and product['url'] != None
+                    and product['url'] is not None
                     and product['image_front_url'] != ''
-                    and product['ingredients_text_with_allergens_fr'] != None
+                    and product['ingredients_text_with_allergens_fr'] is not None
                 ):
 
                     query1 = (
@@ -201,7 +201,8 @@ def feed_products(conn):
                     product_id = cursor2.fetchall()
                     cursor2.close()
 
-                    # feeding dataset in order to insert into table product has category
+                    # feeding dataset in order to insert into table product
+                    #  has category
                     product_category.add((product_id[0][0], category[0]))
 
     # inserting into the junction table

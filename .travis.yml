@@ -32,3 +32,4 @@ env: DJANGO_SETTINGS_MODULE="config.settings.travis"
 # command to run tests
 script:
   - pytest --cov . # or py.test for Python versions 3.5 and below
+  - flake8
