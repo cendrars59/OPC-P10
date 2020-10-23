@@ -121,13 +121,13 @@ class TestLoginPage(StaticLiveServerTestCase):
         self.driver.find_element_by_id("btn-register").click()
         time.sleep(5)
         redirection_url = self.live_server_url + reverse("login")
-        self.assertEquals(self.driver.current_url, redirection_url)
+        self.assertEqual(self.driver.current_url, redirection_url)
         self.driver.find_element_by_name("username").send_keys("bobby")
         time.sleep(1)
         self.driver.find_element_by_name("password").send_keys("Dickrivers76")
         self.driver.find_element_by_id("btn-login").click()
         time.sleep(5)
-        self.assertEquals(self.driver.current_url, self.live_server_url + '/')
+        self.assertEqual(self.driver.current_url, self.live_server_url + '/')
 
 
 class TestUserInformationPage(StaticLiveServerTestCase):
