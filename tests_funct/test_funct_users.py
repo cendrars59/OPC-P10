@@ -6,16 +6,18 @@ from selenium import webdriver
 
 
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--headless')
+#chrome_options.add_argument('--headless')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-gpu')
+#chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_argument('window-size=1920x1080')
-# chrome_options.add_argument('--disable-dev-shm-usage')
 
 
 class TestRegisterPage(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.driver = webdriver.Chrome(options=chrome_options)
+        cls.driver = webdriver.Chrome(executable_path='/mnt/c/webdrivers/chromedriver.exe', options=chrome_options)
         cls.driver.implicitly_wait(30)
         cls.driver.maximize_window()
 
@@ -96,7 +98,7 @@ class TestLoginPage(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.driver = webdriver.Chrome(options=chrome_options)
+        cls.driver = webdriver.Chrome(executable_path='/mnt/c/webdrivers/chromedriver.exe', options=chrome_options)
         cls.driver.implicitly_wait(30)
         cls.driver.maximize_window()
 
@@ -134,7 +136,7 @@ class TestUserInformationPage(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.driver = webdriver.Chrome(options=chrome_options)
+        cls.driver = webdriver.Chrome(executable_path='/mnt/c/webdrivers/chromedriver.exe', options=chrome_options)
         cls.driver.implicitly_wait(30)
         cls.driver.maximize_window()
 
@@ -159,7 +161,7 @@ class TestUserInformationPage(StaticLiveServerTestCase):
         self.driver.find_element_by_id("btn-register").click()
         time.sleep(5)
         redirection_url = self.live_server_url + reverse("login")
-        self.assertEquals(self.driver.current_url, redirection_url)
+        self.assertEqual(self.driver.current_url, redirection_url)
         self.driver.find_element_by_name("username").send_keys("robert")
         time.sleep(1)
         self.driver.find_element_by_name("password").send_keys("Dickrivers76")
@@ -179,7 +181,7 @@ class TestUserInformationUpdatePage(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.driver = webdriver.Chrome(options=chrome_options)
+        cls.driver = webdriver.Chrome(executable_path='/mnt/c/webdrivers/chromedriver.exe', options=chrome_options)
         cls.driver.implicitly_wait(30)
         cls.driver.maximize_window()
 

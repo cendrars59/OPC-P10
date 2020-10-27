@@ -6,10 +6,10 @@ from selenium import webdriver
 
 
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--headless')
+#chrome_options.add_argument('--headless')
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--disable-gpu')
-chrome_options.add_argument('--disable-dev-shm-usage')
+#chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_argument('window-size=1920x1080')
 
 
@@ -18,7 +18,7 @@ class TestHomePage(StaticLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.driver = webdriver.Chrome(
-            executable_path='/usr/local/bin/chromedriver', options=chrome_options)
+            executable_path='/mnt/c/webdrivers/chromedriver.exe', options=chrome_options)
         cls.driver.implicitly_wait(30)
         cls.driver.maximize_window()
 
