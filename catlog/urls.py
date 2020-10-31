@@ -10,3 +10,6 @@ urlpatterns = [
     # Url for the search view
     path("search/", views.search, name='search'),
 ]
+
+handler404 = views.handler404
+handler500 = views.handler500

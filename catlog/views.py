@@ -122,3 +122,11 @@ def search(request):
                 user=user, mainProduct=product, subProduct=subproduct
             )
         return redirect(request.POST.get('next'))
+
+
+def handler404(request, exception, template_name="404.html"):
+    return render(request, '404.html', status=404)
+
+
+def handler500(request):
+    return render(request, '500.html', status=500)

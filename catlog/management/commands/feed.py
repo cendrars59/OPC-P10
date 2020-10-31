@@ -1,17 +1,17 @@
 #!/usr/local/bin/python3
 
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 
 from .Database.dbRessources import connect
 from .Utils.datafeed import feed_application
 
 
 class Command(BaseCommand):
-    help = 'Feeding heroku database'
+    help = 'Feeding database from Openfoodfacts'
 
     def handle(self, *args, **options):
         # Access to database to access to the data
-        print("Check database credential")
+        print("Starting feed")
         connection = connect()
         feed_application(connection)
-        print('database creation & feed done')
+        print('feed done')

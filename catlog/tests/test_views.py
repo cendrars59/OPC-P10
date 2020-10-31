@@ -9,5 +9,3 @@ class SearchTest(TestCase):
     def test_root_url_resolves_to_search_view(self):
         found = resolve('/catalogue/search/')
         self.assertEqual(found.func, search)
-
-    
