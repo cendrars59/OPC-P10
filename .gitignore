@@ -137,3 +137,6 @@ dmypy.json
 db.sqlite3
 
 config/settings/production.py
+
+#allure 
+/allure

@@ -113,9 +113,7 @@ def feed_products(conn):
             str(len(categories))
         )
     )
-    print(
-        "products loading is starting. It takes a while...Have a break :-)"
-    )
+    print("products loading is starting. It takes a while...Have a break :-)")
     for category in categories:
         print('loading products for the category : {}'.format(category[2]))
         payload = {
@@ -168,7 +166,8 @@ def feed_products(conn):
                     and ckresult[0][0] == 0
                     and product['url'] is not None
                     and product['image_front_url'] != ''
-                    and product['ingredients_text_with_allergens_fr'] is not None
+                    and product['ingredients_text_with_allergens_fr']
+                    is not None
                 ):
 
                     query1 = (

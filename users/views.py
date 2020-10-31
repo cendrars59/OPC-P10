@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import redirect, render
 
-from .forms import UserRegisterForm, UserUpdateForm, UserProfileUpdate
+from .forms import UserProfileUpdate, UserRegisterForm, UserUpdateForm
 from .models import UserProductsSearch
 
 
