@@ -96,6 +96,7 @@ class TestRegisterPage(StaticLiveServerTestCase):
 
 
 class TestLoginPage(StaticLiveServerTestCase):
+    @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.driver = webdriver.Chrome(
